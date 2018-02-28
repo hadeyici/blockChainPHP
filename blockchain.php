@@ -32,7 +32,7 @@ class BlockChain
 	public function __construct()
 	{
 		$this->chain = [$this->olusturBlock()];
-		$this->derece = 4;
+		$this->derece = 1;
 	}
 
 	//Block oluşturucu
@@ -48,7 +48,7 @@ class BlockChain
 	}
 
 	//Zincire yeni block
-	public function ekleme()
+	public function ekleme($block)
 	{
 		$block->prevHash = $this->sonBlock()->hash;
 		$this->hepsi($block);
@@ -70,18 +70,7 @@ class BlockChain
 	//Blok Zinciri Kontrolü
 	public function kontrol()
 	{
-		for ($i=1; $i < count($this->chain); $i++) { 
-			$simdikiBlock = $this->chain[$i];
-			$oncekiBlock = $this->chain[$i-1];
-
-			if($simdikiBlock->hash != $simdikiBlock->hesaplamaHash()){
-				return false;
-			}
-
-			if($simdikiBlock->prevHash != $oncekiBlock->hash){
-				return false;
-			}
-		}
+		
 
 		return true;
 	}
