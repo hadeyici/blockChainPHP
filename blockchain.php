@@ -87,3 +87,15 @@ class BlockChain
 	}
 }
 
+// İki blok oluşturalım. 
+
+$blockchain = new BlockChain();
+
+echo "Birinci Block <br>";
+$blockchain->ekleme(new Block(1, strtotime("now"), "derece:1"));
+
+echo "<br><br> İkinci Block <br>";
+$blockchain->ekleme(new Block(2, strtotime("now"), "derece:2"));
+
+echo "<br><br>";
+echo json_encode($blockchain, JSON_PRETTY_PRINT);
