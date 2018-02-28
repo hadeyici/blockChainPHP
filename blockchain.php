@@ -70,7 +70,16 @@ class BlockChain
 	//Blok Zinciri Kontrolü
 	public function kontrol()
 	{
-		
+		for ($i=1; $i < count($this->chain); $i++) { 
+			$simdikiBlock = $this->chain[$i];
+			$oncekiBlock = $this->chain[$i-1];
+			if($simdikiBlock->hash != $simdikiBlock->hesaplamaHash()){
+				return false;
+			}
+			if($simdikiBlock->prevHash != $oncekiBlock->hash){
+				return false;
+			}
+		}		
 
 		return true;
 	}
